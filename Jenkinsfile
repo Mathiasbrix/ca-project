@@ -50,7 +50,7 @@ pipeline {
           when { branch "master" }
           steps {
             sshagent (credentials: ['f51c83da-4f94-4cb8-b716-8d02b3e6eafa']) {
-            sh 'ssh -o StrictHostKeyChecking=no ubuntu@23.251.131.233 sh ./docker.sh'
+            sh 'ssh -o StrictHostKeyChecking=no ubuntu@23.251.131.233 cd ca-project/ && sh ./docker.sh'
             }
 
           }

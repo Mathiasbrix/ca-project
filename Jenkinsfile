@@ -29,10 +29,9 @@ pipeline {
         DOCKERCREDS = credentials('docker_login') //use the credentials just created in this stage
                   }
       steps {
-        sh 'ls'
-        sh 'build-docker.sh'
+        sh './build-docker.sh'
         sh 'echo "$DOCKERCREDS_PSW" | docker login -u "$DOCKERCREDS_USR" --password-stdin' //login to docker hub with the credentials above
-        sh 'push-docker.sh'
+        sh './push-docker.sh'
         }
     }
 

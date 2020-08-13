@@ -12,6 +12,8 @@ pipeline {
 
     stage('test app') {
       steps {
+        unstash 'code'
+        sh 'pip install -r requirements.txt'
         sh 'python tests.py'
       }
     }

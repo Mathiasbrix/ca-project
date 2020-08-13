@@ -29,14 +29,18 @@ pipeline {
           steps {
             unstash 'code'
             sh 'apt-get install zip'
-            sh 'zip dir.zip -r .'
-            archiveArtifacts 'dir.zip'
+            sh 'zip CoDeChan.zip -r .'
+            archiveArtifacts 'CoDeChan.zip'
           }
         }
 
         stage('dockerize app') {
+          environment {
+            SSH = credentials('f51c83da-4f94-4cb8-b716-8d02b3e6eafa')
+          }
+          when { branch "master" }
           steps {
-            sh 'echo ":)"'
+            sh 'echo "$SSH_KEY"'
           }
         }
 

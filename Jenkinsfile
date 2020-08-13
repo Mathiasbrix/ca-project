@@ -11,6 +11,11 @@ pipeline {
     }
 
     stage('test app') {
+      agent{
+        docker{
+          image: python:3
+        }
+      }
       steps {
         unstash 'code'
         sh 'pip install -r requirements.txt'

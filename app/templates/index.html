@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
 <h1>Welcome to CoDe-chan!</h1>
+<h2>This is an automatically deployed change, deployed by Jenkins CD!</h2>
     {% for post in posts %}
     <div><p><b>{{ post.title }}</b> by <i>{{ post.user_name }}</i> <br />
         {{ post.body }}</p>

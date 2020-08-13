@@ -1,23 +1,29 @@
 pipeline {
   agent any
+  environment{
+      docker_username='joachimbulow'
+  }
   stages {
-    stage('build app') {
+    stage('clone down'){
       steps {
-        sh 'echo ":)"'
+        stash excludes: '.git', name: 'code'
       }
     }
 
     stage('test app') {
       steps {
-        sh 'echo ":)"'
+        sh 'python tests.py'
       }
     }
 
-    stage('create artifacts') {
+    stage('artifacts and dockerize') {
       parallel {
         stage('create artifacts') {
           steps {
-            sh 'echo ":)"'
+            unstash 'code'
+            sh 'apt-get install zip'
+            sh 'zip dir.zip -r .'
+            archiveArtifacts 'dir.zip'
           }
         }
 

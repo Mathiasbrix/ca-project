@@ -13,7 +13,7 @@ pipeline {
     stage('test app') {
       agent{
         docker{
-          image: python:3
+          image 'python:3'
         }
       }
       steps {
